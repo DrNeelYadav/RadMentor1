@@ -16,14 +16,8 @@
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .rad-gradient {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
 
@@ -95,26 +89,11 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    
+    <!-- Shared Utilities -->
+    <script src="utils.js"></script>
 
     <script>
-        // --- Feather Icons Initialization ---
-        feather.replace();
-
-        // --- Firebase Configuration ---
-        const firebaseConfig = {
-            apiKey: "AIzaSyD-OTIwv6P88eT2PCPJXiHgZEDgFV8ZcSw",
-            authDomain: "radiology-mcqs.firebaseapp.com",
-            projectId: "radiology-mcqs",
-            storageBucket: "radiology-mcqs.appspot.com",
-            messagingSenderId: "862300415358",
-            appId: "1:862300415358:web:097d5e413f388e30587f2f",
-            measurementId: "G-0V1SD1H95V"
-        };
-
-        // --- Firebase Initialization ---
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
 
         // --- Admin Specific Functions ---
 
@@ -179,7 +158,7 @@
                     row.className = 'bg-white border-b hover:bg-gray-50';
                     row.innerHTML = `
                         <td class="py-4 px-6 font-medium text-gray-900">${logData.email}</td>
-                        <td class="py-4 px-6">${logData.timestamp.toDate().toLocaleString()}</td>
+                        <td class="py-4 px-6">${formatTimestamp(logData.timestamp)}</td>
                         <td class="py-4 px-6">${logData.accessLevel || 'N/A'}</td>
                     `;
                     loginLogsBody.appendChild(row);

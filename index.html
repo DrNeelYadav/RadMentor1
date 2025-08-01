@@ -16,37 +16,8 @@
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <style>
-        /* Custom styles to complement Tailwind */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-        }
-
-        /* Custom gradient for buttons and highlights */
-        .rad-gradient {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-        }
-        .rad-gradient-text {
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Styles for the dashboard part */
-        .dashboard-grid-item {
-            transition: all 0.2s ease-in-out;
-            border: 1px solid #e5e7eb;
-        }
-        .dashboard-grid-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            border-color: #3b82f6;
-        }
-        .sidebar {
-            transition: transform 0.3s ease-in-out;
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="text-gray-800">
 
@@ -421,26 +392,11 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    
+    <!-- Shared Utilities -->
+    <script src="utils.js"></script>
 
     <script>
-        // --- Feather Icons Initialization ---
-        feather.replace();
-
-        // --- Firebase Configuration ---
-        const firebaseConfig = {
-            apiKey: "AIzaSyD-OTIwv6P88eT2PCPJXiHgZEDgFV8ZcSw",
-            authDomain: "radiology-mcqs.firebaseapp.com",
-            projectId: "radiology-mcqs",
-            storageBucket: "radiology-mcqs.appspot.com",
-            messagingSenderId: "862300415358",
-            appId: "1:862300415358:web:097d5e413f388e30587f2f",
-            measurementId: "G-0V1SD1H95V"
-        };
-
-        // --- Firebase Initialization ---
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
 
         // --- Global State ---
         let authMode = 'signin';
@@ -611,7 +567,7 @@
             
             landingPage.classList.remove('hidden');
             dashboard.classList.add('hidden');
-            feather.replace();
+            initFeatherIcons();
         }
 
         function setupLoggedOutState() {
@@ -683,7 +639,7 @@
             if (sectionId === 'settings') populateSettingsDetails();
 
             sidebar.classList.add('translate-x-full');
-            feather.replace();
+            initFeatherIcons();
         }
 
         // --- NEW Dashboard View Functions ---
@@ -691,21 +647,21 @@
             mainDashboardContent.classList.remove('hidden');
             frcrPartsView.classList.add('hidden');
             frcrPart1SubjectsView.classList.add('hidden');
-            feather.replace();
+            initFeatherIcons();
         }
 
         function showFrcrParts() {
             mainDashboardContent.classList.add('hidden');
             frcrPartsView.classList.remove('hidden');
             frcrPart1SubjectsView.classList.add('hidden');
-            feather.replace();
+            initFeatherIcons();
         }
 
         function showFrcrPart1Subjects() {
             mainDashboardContent.classList.add('hidden');
             frcrPartsView.classList.add('hidden');
             frcrPart1SubjectsView.classList.remove('hidden');
-            feather.replace();
+            initFeatherIcons();
         }
         
         function populateProfileDetails() {
